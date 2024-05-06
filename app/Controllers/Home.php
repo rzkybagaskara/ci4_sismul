@@ -11,7 +11,6 @@ class Home extends BaseController
 
         echo view('footer');
 
-        echo view('about.php');
 
     }
 
@@ -22,5 +21,9 @@ class Home extends BaseController
 
     public function updateBarang(){
         
+    }
+
+    public function about(){
+        echo view('about');
     }
 }
