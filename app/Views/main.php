@@ -25,8 +25,8 @@
                             <td><?= $product->quantity ?></td>
                             <td><?= $product->gambar_barang ?></td>
                             <td>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-danger">Hapus</a>
+                                <a href="<?= base_url('addBarang/' . $product->id_barang) ?>" class="btn btn-primary">Edit</a>
+                                <a href="<?= base_url('deleteBarang/' . $product->id_barang) ?>" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
