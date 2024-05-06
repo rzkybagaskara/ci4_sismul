@@ -5,9 +5,26 @@ namespace App\Controllers;
 class Home extends BaseController
 {
     public function index(){
+
+        $db = \Config\Database::connect();
+
+        if (!$db->connect()) {
+            die("Database connection failed: " . $db->error());
+        } else {
+            echo "Database connected successfully!";
+        }
+
+        $query = $db->table('products')->get();
+        
+        if ($query->getNumRows() > 0) {
+            $data['products'] = $query->getResult();
+        } else {
+            $data['products'] = [];
+        }
+
         echo view('header');
         
-        echo view('main');
+        echo view('main', $data);
 
         echo view('footer');
 
