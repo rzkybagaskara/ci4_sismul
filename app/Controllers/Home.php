@@ -6,16 +6,8 @@ class Home extends BaseController
 {
     public function index(){
 
-        $db = \Config\Database::connect();
+        $query = $this->db->table('products')->get();
 
-        if (!$db->connect()) {
-            die("Database connection failed: " . $db->error());
-        } else {
-            echo "Database connected successfully!";
-        }
-
-        $query = $db->table('products')->get();
-        
         if ($query->getNumRows() > 0) {
             $data['products'] = $query->getResult();
         } else {
