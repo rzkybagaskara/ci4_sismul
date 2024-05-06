@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h3>Daftar Stok Barang di WarungKu</h3>
 
-        <a href="#" class="btn btn-success mb-2">Tambah Barang</a>
+        <a href=<?= base_url('addBarang') ?> class="btn btn-success mb-2">Tambah Barang</a>
 
         <table class="table table-bordered">
             <thead class="table-primary">
