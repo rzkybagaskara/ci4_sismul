@@ -6,22 +6,22 @@
             <h2>Form Tambah Barang</h2>
 
             <!-- Fix input type, name, and id to it's respective label name -->
-            <form action="/" method="post">
+            <form action="<?= base_url('addBarang') ?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">ID Barang</label>
-                    <input type="number" class="form-control" id="inputNPM" name="npm" required>
+                    <input type="number" class="form-control" name="id_barang" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Nama Barang</label>
-                    <input type="text" class="form-control" id="inputNama" name="nama_lengkap">
+                    <input type="text" class="form-control" name="nama_barang" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Quantity</label>
-                    <input type="text" class="form-control" id="inputKelas" name="kelas">
+                    <input type="text" class="form-control" name="quantity" required>
                 </div>
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Upload Gambar</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <label for="gambar_barang" class="form-label">Upload Gambar</label>
+                    <input type="file" class="form-control" id="gambar_barang" name="gambar_barang" required>
                 </div>
                 <button type="submit" class="btn btn-success">Tambah Barang</button>
             </form>
