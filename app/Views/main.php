@@ -16,25 +16,19 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($products)) : ?>
-                    <?php foreach ($products as $index => $product) : ?>
-                        <tr>
-                            <th scope="row"><?= $index + 1 ?></th>
-                            <td><?= $product->id_barang ?></td>
-                            <td><?= $product->nama_barang ?></td>
-                            <td><?= $product->quantity ?></td>
-                            <td><?= $product->gambar_barang ?></td>
-                            <td>
-                                <a href="<?= base_url('addBarang/' . $product->id_barang) ?>" class="btn btn-primary">Edit</a>
-                                <a href="<?= base_url('deleteBarang/' . $product->id_barang) ?>" class="btn btn-danger">Hapus</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
+                <?php foreach ($products as $index => $product) : ?>
                     <tr>
-                        <td colspan="6" class="text-center">No data available</td>
+                        <th scope="row"><?= $index + 1 ?></th>
+                        <td><?= $product['id_barang'] ?></td>
+                        <td><?= $product['nama_barang'] ?></td>
+                        <td><?= $product['quantity'] ?></td>
+                        <td><?= $product['gambar_barang'] ?></td>
+                        <td>
+                            <a href="<?= base_url('editBarang/' . $product['id_barang']) ?>" class="btn btn-primary">Edit</a>
+                            <a href="<?= base_url('deleteBarang/' . $product['id_barang']) ?>" class="btn btn-danger">Hapus</a>
+                        </td>
                     </tr>
-                <?php endif; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
 
