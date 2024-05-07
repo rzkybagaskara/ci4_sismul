@@ -3,7 +3,6 @@
         <h3>Daftar Stok Barang di WarungKu</h3>
 
         <a href="<?= base_url('addBarang') ?>" class="btn btn-success mb-2">Tambah Barang</a>
-
         <table class="table table-bordered">
             <thead class="table-primary">
                 <tr>
@@ -17,15 +16,15 @@
             </thead>
             <tbody>
                 <?php foreach ($products as $index => $product) : ?>
-                    <?= $image_url = ROOTPATH . 'upload\\post\\' ?>
+                    <?= $image_url = '../upload/post/' ?>
                     <tr>
                         <th scope="row"><?= $index + 1 ?></th>
                         <td><?= $product['id_barang'] ?></td>
                         <td><?= $product['nama_barang'] ?></td>
                         <td><?= $product['quantity'] ?></td>
                         <td>
-                            <?= $image_url . $product['gambar_barang'] ?>
-                            <img href="<?= $image_url . $product['gambar_barang'] ?>" alt="Gambar Barang">
+                            <!-- <?= $image_url . $product['gambar_barang'] ?> -->
+                            <img src="<?= $image_url . $product['gambar_barang'] ?>" alt="Gambar Barang" style="width:150px; height:150px;">
                         </td>
                         <td>
                             <a action="<?= base_url('editBarang') ?>" method='DELETE' class="btn btn-primary">Edit</a>
