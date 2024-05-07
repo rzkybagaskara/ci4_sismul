@@ -55,8 +55,42 @@ class Home extends BaseController {
         }
     }
 
+    public function updateBarang($id = null) {
+        helper(['form', 'url']);
+        $validation = \Config\Services::validation();
 
-    public function updateBarang() {
+        $validation->setRules([
+            'nama_barang' => 'required|max_length[30]',
+            'quantity' => 'required'
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return view('addBarang') . view('footer', ['validation' => $validation]);
+        } else {
+            $id = uniqid('item', TRUE);
+
+            $file = $this->request->getFile('gambar_barang');
+            $newName = $file->getRandomName();
+
+            $config['upload_path'] = './upload/post';
+            $config['allowed_types'] = 'jpeg|jpg|png';
+            $config['max_size'] = 100000;
+            $config['file_ext_tolower'] = true;
+            $config['file_name'] = str_replace('.', '_', $id);
+
+            $file->move(ROOTPATH . 'upload/post', $newName);
+
+            $data = [
+                'id_barang' => $id,
+                'nama_barang' => $this->request->getVar('nama_barang'),
+                'quantity' => $this->request->getVar('quantity'),
+                'gambar_barang' => $newName
+            ];
+
+            $this->productModel->updateProduct($data);
+
+            return redirect()->to('/');
+        }
     }
 
     public function deleteBarang($id = null) {
