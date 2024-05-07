@@ -8,10 +8,6 @@
             <!-- Fix input type, name, and id to it's respective label name -->
             <form action="<?= base_url('addBarang') ?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label class="form-label">ID Barang</label>
-                    <input type="number" class="form-control" name="id_barang" required>
-                </div>
-                <div class="mb-3">
                     <label class="form-label">Nama Barang</label>
                     <input type="text" class="form-control" name="nama_barang" required>
                 </div>
