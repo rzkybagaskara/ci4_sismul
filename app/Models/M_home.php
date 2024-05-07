@@ -15,9 +15,10 @@ class M_Home extends Model {
         return $this->findAll();
     }
 
-    //     public function insertProduct($data) {
-    //         return $this->insert($data);
-    //     }
+    public function insertProduct($data) {
+        return $this->insert($data);
+    }
+
 
     // public function create($id, $filename) {
 

@@ -3,10 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\M_Home;
-
 use CodeIgniter\Controller;
 use Config\Services;
-// use CodeIgniter\HTTP\Files\UploadedFile;
 
 class Home extends BaseController {
     protected $productModel;
@@ -21,34 +19,47 @@ class Home extends BaseController {
         return view('header') . view('main', $data) . view('footer');
     }
 
-    public function addBarang() {
-        $config = [
-            'upload_path' => './upload/post', // Ensure the path exists and is writable
-            'allowed_types' => 'jpeg|jpg|png', // Correct allowed types
-            'max_size' => 100000, // Ensure it's an integer
-            'file_ext_tolower' => true,
-        ];
+    public function addBarang($id = null) {
+        helper(['form', 'url']);
+        $validation = \Config\Services::validation();
 
-        $upload = Services::upload($config); // Initialize with configuration
+        $validation->setRules([
+            'nama_barang' => 'required|max_length[30]',
+            'quantity' => 'required'
+        ]);
 
-        // Verify 'gambar_barang' is passed to 'doUpload'
-        if (!$upload->doUpload('gambar_barang')) {
-            session()->setFlashdata('error', $upload->displayErrors());
-            return redirect()->back(); // Redirect back on error
+        if (!$validation->withRequest($this->request)->run()) {
+            return view('addBarang') . view('footer', ['validation' => $validation]);
+        } else {
+            $id = uniqid('item', TRUE);
+
+            $file = $this->request->getFile('gambar_barang');
+            $newName = $file->getRandomName();
+
+            $config['upload_path'] = './upload/post';
+            $config['allowed_types'] = 'jpeg|jpg|png';
+            $config['max_size'] = 100000;
+            $config['file_ext_tolower'] = true;
+            $config['file_name'] = str_replace('.', '_', $id);
+
+            $file->move(ROOTPATH . 'upload/post', $newName);
+
+            $data = [
+                'id_barang' => $id,
+                'nama_barang' => $this->request->getVar('nama_barang'),
+                'quantity' => $this->request->getVar('quantity'),
+                'gambar_barang' => $newName
+            ];
+
+            $this->productModel->insertProduct($data);
+
+            return redirect()->to('/');
         }
-
-        // Get the uploaded file's data
-        $fileData = $upload->getFileData();
-        $filename = $fileData['file_name']; // Extract the uploaded file name
-
-        // Save to your model/database (example)
-        $this->model->create(uniqid('item_', true), $filename); // Ensure unique ID
-
-        return redirect()->to(base_url('/')); // Redirect after success
     }
 
 
     public function updateBarang() {
+        // Implement update logic here
     }
 
     public function about() {
