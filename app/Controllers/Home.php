@@ -62,6 +62,11 @@ class Home extends BaseController {
         // Implement update logic here
     }
 
+    public function deleteBarang($id){
+        $this->$productModel->deleteBarang($id);
+        return redirect()->to('/');
+    }
+
     public function about() {
         echo view('about');
     }

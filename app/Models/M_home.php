@@ -19,6 +19,10 @@ class M_Home extends Model {
         return $this->insert($data);
     }
 
+    public function deleteProducts($id){
+        return $this->db->table('products')->delete(['id_barang'] => $id);
+    }
+
 
     // public function create($id, $filename) {
 
