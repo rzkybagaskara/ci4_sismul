@@ -3,8 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\M_Home;
-use CodeIgniter\Controller;
-use Config\Services;
 
 class Home extends BaseController {
     protected $productModel;
@@ -59,8 +57,18 @@ class Home extends BaseController {
 
 
     public function updateBarang() {
-        // Implement update logic here
     }
+
+    public function deleteBarang($id = null) {
+        $post = $this->productModel->getProduct($id);
+
+        if ($post) {
+            $this->productModel->deleteProduct($id);
+            unlink('./upload/post/' . $post->gambar_barang);
+        }
+        // return redirect()->to('/');
+    }
+
 
     public function about() {
         echo view('about');
