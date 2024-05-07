@@ -24,8 +24,11 @@
                         <td><?= $product['quantity'] ?></td>
                         <td><?= $product['gambar_barang'] ?></td>
                         <td>
-                            <a href="<?= base_url('editBarang/' . $product['id_barang']) ?>" class="btn btn-primary">Edit</a>
-                            <a href="<?= base_url('deleteBarang/' . $product['id_barang']) ?>" class="btn btn-danger">Hapus</a>
+                            <a action="<?= base_url('editBarang') ?>" method='DELETE' class="btn btn-primary">Edit</a>
+                            <form action="<?= base_url('deleteBarang/' . $product['id_barang']) ?>" method="POST" style="display: inline;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
