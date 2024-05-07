@@ -5,7 +5,6 @@
         <div class="col-xs-6">
             <h2>Form Tambah Barang</h2>
 
-            <!-- Fix input type, name, and id to it's respective label name -->
             <form action="<?= base_url('addBarang') ?>" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">ID Barang</label>
