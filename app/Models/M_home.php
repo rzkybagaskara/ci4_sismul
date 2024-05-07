@@ -27,13 +27,8 @@ class M_Home extends Model {
         return $this->insert($data);
     }
 
-<<<<<<< HEAD
     public function updateProduct($id, $data) {
         return $this->update($id, $data);
-=======
-    public function deleteProducts($id){
-        return $this->db->table('products')->delete(['id_barang'] => $id);
->>>>>>> ce199e9641a054650e60e4d4ea885285ee3ee952
     }
 
 
