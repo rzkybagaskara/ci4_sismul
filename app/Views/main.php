@@ -17,12 +17,16 @@
             </thead>
             <tbody>
                 <?php foreach ($products as $index => $product) : ?>
+                    <?= $image_url = ROOTPATH . 'upload\\post\\' ?>
                     <tr>
                         <th scope="row"><?= $index + 1 ?></th>
                         <td><?= $product['id_barang'] ?></td>
                         <td><?= $product['nama_barang'] ?></td>
                         <td><?= $product['quantity'] ?></td>
-                        <td><?= $product['gambar_barang'] ?></td>
+                        <td>
+                            <?= $image_url . $product['gambar_barang'] ?>
+                            <img href="<?= $image_url . $product['gambar_barang'] ?>" alt="Gambar Barang">
+                        </td>
                         <td>
                             <a action="<?= base_url('editBarang') ?>" method='DELETE' class="btn btn-primary">Edit</a>
                             <form action="<?= base_url('deleteBarang/' . $product['id_barang']) ?>" method="POST" style="display: inline;">

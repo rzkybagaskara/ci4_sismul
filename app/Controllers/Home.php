@@ -64,9 +64,9 @@ class Home extends BaseController {
 
         if ($post) {
             $this->productModel->deleteProduct($id);
-            unlink('./upload/post/' . $post->gambar_barang);
+            unlink(ROOTPATH . 'upload/post/' . $post['gambar_barang']);
         }
-        // return redirect()->to('/');
+        return redirect()->to('/');
     }
 
 
