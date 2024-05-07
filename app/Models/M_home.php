@@ -28,7 +28,7 @@ class M_Home extends Model {
     }
 
     public function updateProduct($id, $data) {
-        return $this->update($id, $data);
+        return $this->where('id_barang', $id)->update($data);
     }
 
 
