@@ -20,7 +20,7 @@
 
                 <div class="mb-3">
                     <label for="gambar_barang" class="form-label">Upload Gambar</label>
-                    <input type="file" class="form-control" id="gambar_barang" name="gambar_barang" required>
+                    <input type="file" class="form-control" id="gambar_barang" name="gambar_barang">
                 </div>
 
                 <button type="submit" class="btn btn-success">Update Barang</button>
