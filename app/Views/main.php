@@ -16,29 +16,60 @@
             </thead>
             <tbody>
                 <?php foreach ($products as $index => $product) : ?>
-                    <?php $image_url = '../upload/post/' ?>
-                    <tr>
-                        <th scope="row"><?= $index + 1 ?></th>
-                        <td><?= $product['id_barang'] ?></td>
-                        <td><?= $product['nama_barang'] ?></td>
-                        <td><?= $product['quantity'] ?></td>
-                        <td>
-                            <img src="<?= $image_url . $product['gambar_barang'] ?>" alt="Gambar Barang" style="width:150px; height:150px;">
-                        </td>
-                        <td>
-                            <form action="<?= base_url('updateBarang/' . $product['id_barang']) ?>" method="POST" style="display: inline;">
-                                <input type="hidden" name="_update" value="POST">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </form>
-                            <form action="<?= base_url('deleteBarang/' . $product['id_barang']) ?>" method="POST" style="display: inline;">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                <?php $image_url = '../upload/post/' ?>
+                <tr>
+                    <th scope="row"><?= $index + 1 ?></th>
+                    <td><?= $product['id_barang'] ?></td>
+                    <td><?= $product['nama_barang'] ?></td>
+                    <td><?= $product['quantity'] ?></td>
+                    <td>
+                        <img src="<?= $image_url . $product['gambar_barang'] ?>" alt="Gambar Barang"
+                            style="width:150px; height:150px;">
+                    </td>
+                    <td>
+                        <form action="<?= base_url('updateBarang/' . $product['id_barang']) ?>" method="POST"
+                            style="display: inline;">
+                            <input type="hidden" name="_update" value="POST">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                        <form action="<?= base_url('deleteBarang/' . $product['id_barang']) ?>" method="POST"
+                            data-delete-form style="display: inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
 
     </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const deleteData = document.querySelectorAll('form[data-delete-form]');
+
+    deleteData.forEach(form => {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Apakah anda ingin menghapus data tersebut?",
+                text: "Sekali dihapus maka data akan hilang selamanya!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+
+        })
+    })
+})
+</script>

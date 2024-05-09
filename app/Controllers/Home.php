@@ -106,7 +106,6 @@ class Home extends BaseController {
             }
 
             $this->productModel->updateProduct($id, $data);
-
             return redirect()->to('/');
         }
     }

@@ -5,8 +5,7 @@
         <div class="col-xs-6">
             <h2>Form Tambah Barang</h2>
 
-            <!-- Fix input type, name, and id to it's respective label name -->
-            <form action="<?= base_url('addBarang') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('addBarang') ?>" method="post" enctype="multipart/form-data" data-insert-form>
                 <div class="mb-3">
                     <label class="form-label">Nama Barang</label>
                     <input type="text" class="form-control" name="nama_barang" required>
@@ -25,3 +24,26 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const insertData = document.querySelectorAll('form[data-insert-form]');
+
+    insertData.forEach(form => {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: "Tambah data berhasil",
+                text: "Klik OK untuk menampilkan data",
+                icon: "success",
+                confirmButtonText: "OK"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        })
+    })
+})
+</script>
