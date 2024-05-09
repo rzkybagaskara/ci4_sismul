@@ -17,6 +17,17 @@ class Home extends BaseController {
         return view('header') . view('main', $data) . view('footer');
     }
 
+    public function viewBarang($id = null) {
+        $barang = $this->productModel->getProduct($id);
+
+        if ($barang) {
+            return view('viewBarang', ['barang' => $barang]);
+        } else {
+            return redirect()->to('/');
+        }
+    }
+
+
     public function addBarang($id = null) {
         helper(['form', 'url']);
         $validation = \Config\Services::validation();

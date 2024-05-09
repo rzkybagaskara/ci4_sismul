@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('/addBarang', 'Home::addBarang');
+$routes->get('/viewBarang/(:any)', 'Home::viewBarang/$1');
 $routes->post('/addBarang', 'Home::addBarang');
 $routes->delete('/deleteBarang/(:any)', 'Home::deleteBarang/$1');
 $routes->add('/updateBarang/(:any)', 'Home::updateBarang/$1');
