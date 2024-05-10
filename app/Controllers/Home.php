@@ -96,7 +96,7 @@ class Home extends BaseController {
                 $newName = $gambar_barang->getRandomName();
 
                 if ($prev_image && file_exists('./upload/post/' . $prev_image)) {
-                    unlink('./upload/post/' . $prev_image);
+                    unlink(ROOTPATH . 'upload/post' . $prev_image);
                 }
 
                 // Simpen ke folder post
